@@ -28,7 +28,7 @@ if __name__ == '__main__':
     parser.add_argument('--wait_time', type=float, help='Wait Time (seconds)', default=0.7)
     parser.add_argument('--test_mode', type=bool, help='Test Mode True/False', default=False)
     parser.add_argument('--prints', type=bool, help='Scanning Profit Screen Print True/False', default=True)
-    parser.add_argument('--debug', type=bool, help='Debug True/False', default=True)
+    parser.add_argument('--debug', type=bool, help='Debug True/False', default=False)
     parser.add_argument('--loop', type=int, help='Loop (0 unlimited)', default=0)
 
     # Working Modes

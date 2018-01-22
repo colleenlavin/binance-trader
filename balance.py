@@ -41,7 +41,9 @@ class Binance:
 
     def openorders(self):
         return self.client.get_open_orders()
-        
+
+     #get profits based on previous ticks
+     #todo make profits based on average of past ticks rather than just the last tick  
     def profits(self, asset='BTC'):
         
         coins = self.client.get_products()
@@ -52,9 +54,18 @@ class Binance:
                     
                 orders = self.client.get_orderbooks(coin['symbol'], 5)
                 lastBid = float(orders['bids'][0][0]) #last buy price (bid)
+                oneBid = float(orders['bids'][1][0]) 
+                twoBid = float(orders['bids'][2][0]) 
+                threeBid = float(orders['bids'][3][0]) 
+                fourBid = float(orders['bids'][4][0]) 
+           
                 lastAsk = float(orders['asks'][0][0]) #last sell price (ask)
-    
-                profit = (lastAsk - lastBid) /  lastBid * 100
+                oneAsk = float(orders['asks'][1][0]) 
+                twoAsk = float(orders['asks'][2][0]) 
+                threeAsk = float(orders['asks'][3][0]) 
+                fourAsk = float(orders['asks'][4][0]) 
+               
+                profit = ((((lastAsk- lastBid  ) /  lastBid * 100) + ((fourAsk-fourBid)/fourBid * 100))/2)
             
                 print ('%.2f%% profit : %s (bid:%.8f-ask%.8f)' % (profit, coin['symbol'], lastBid, lastAsk))
             
