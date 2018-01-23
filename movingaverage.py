@@ -53,16 +53,10 @@ class Binance:
             if coin['quoteAsset'] == asset:
                     
                 orders = self.client.get_orderbooks(coin['symbol'], 5)
-                lastBid = float(orders['bids'][0][0]) #last buy price (bid)
-                oneBid = float(orders['bids'][1][0]) 
-                twoBid = float(orders['bids'][2][0]) 
-                threeBid = float(orders['bids'][3][0]) 
+                lastBid = float(orders['bids'][0][0]) #last buy price (bid) 
                 fourBid = float(orders['bids'][4][0]) 
            
                 lastAsk = float(orders['asks'][0][0]) #last sell price (ask)
-                oneAsk = float(orders['asks'][1][0]) 
-                twoAsk = float(orders['asks'][2][0]) 
-                threeAsk = float(orders['asks'][3][0]) 
                 fourAsk = float(orders['asks'][4][0]) 
                 
                 profit = ((((lastAsk- lastBid  ) /  lastBid * 100) + ((fourAsk-fourBid)/fourBid * 100))/2)
