@@ -43,7 +43,7 @@ class Binance:
         return self.client.get_open_orders()
 
      #get profits based on previous ticks
-     #todo make profits based on average of past ticks rather than just the last tick  
+     #todo make profits based on average of past ticks rather than just the last tick . Store ticks in an array and create moving average of all of them. 
     def profits(self, asset='BTC'):
         
         coins = self.client.get_products()
@@ -51,11 +51,11 @@ class Binance:
         for coin in coins['data']:
             
             if coin['quoteAsset'] == asset:
-                    
+                
                 orders = self.client.get_orderbooks(coin['symbol'], 5)
                 lastBid = float(orders['bids'][0][0]) #last buy price (bid) 
                 fourBid = float(orders['bids'][4][0]) 
-           
+
                 lastAsk = float(orders['asks'][0][0]) #last sell price (ask)
                 fourAsk = float(orders['asks'][4][0]) 
                 
